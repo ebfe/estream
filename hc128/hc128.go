@@ -12,7 +12,7 @@ type hc128 struct {
 	q [512]uint32
 	i uint64
 
-	s  [4]byte 
+	s  [4]byte
 	ks []byte
 }
 
@@ -94,11 +94,11 @@ func (h *hc128) h2(x uint32) uint32 {
 }
 
 func rotl(v, n uint32) uint32 {
-	return (v << n) | (v>>(32 - n))
+	return (v << n) | (v >> (32 - n))
 }
 
 func rotr(v, n uint32) uint32 {
-	return (v >> n) | (v<<(32 - n))
+	return (v >> n) | (v << (32 - n))
 }
 
 func f1(x uint32) uint32 {

@@ -38,7 +38,7 @@ func TestKeyStream(t *testing.T) {
 
 		digest := xordigest(ks, len(tc.xor))
 		if !bytes.Equal(digest, tc.xor) {
-				t.Errorf("tests[%d] xor-digest = %x want %x\n", i, digest, tc.xor)
+			t.Errorf("tests[%d] xor-digest = %x want %x\n", i, digest, tc.xor)
 		}
 	}
 }

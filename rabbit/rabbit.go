@@ -1,4 +1,4 @@
-// Package rabbit implements the Rabbit stream cipher
+// Package rabbit implements the Rabbit stream cipher.
 package rabbit
 
 import (
@@ -65,13 +65,13 @@ func (r *rabbit) setupKey(key []uint32) {
 	r.x[7] = key[2]<<16 | key[1]>>16
 
 	r.c[0] = rotl(key[2], 16)
-	r.c[1] = key[0] & 0xffff0000 | key[1] & 0xffff
+	r.c[1] = key[0]&0xffff0000 | key[1]&0xffff
 	r.c[2] = rotl(key[3], 16)
-	r.c[3] = key[1] & 0xffff0000 | key[2] & 0xffff
+	r.c[3] = key[1]&0xffff0000 | key[2]&0xffff
 	r.c[4] = rotl(key[0], 16)
-	r.c[5] = key[2] & 0xffff0000 | key[3] & 0xffff
+	r.c[5] = key[2]&0xffff0000 | key[3]&0xffff
 	r.c[6] = rotl(key[1], 16)
-	r.c[7] = key[3] & 0xffff0000 | key[0] & 0xffff
+	r.c[7] = key[3]&0xffff0000 | key[0]&0xffff
 
 	for i := 0; i < 4; i++ {
 		r.nextState()
@@ -129,10 +129,10 @@ func (r *rabbit) extract() {
 	r.nextState()
 
 	// extract keystream
-	sw[0] = r.x[0] ^ (r.x[5] >> 16 | r.x[3] << 16)
-	sw[1] = r.x[2] ^ (r.x[7] >> 16 | r.x[5] << 16)
-	sw[2] = r.x[4] ^ (r.x[1] >> 16 | r.x[7] << 16)
-	sw[3] = r.x[6] ^ (r.x[3] >> 16 | r.x[1] << 16)
+	sw[0] = r.x[0] ^ (r.x[5]>>16 | r.x[3]<<16)
+	sw[1] = r.x[2] ^ (r.x[7]>>16 | r.x[5]<<16)
+	sw[2] = r.x[4] ^ (r.x[1]>>16 | r.x[7]<<16)
+	sw[3] = r.x[6] ^ (r.x[3]>>16 | r.x[1]<<16)
 
 	for i := range sw {
 		binary.LittleEndian.PutUint32(r.s[i*4:], sw[i])
@@ -150,9 +150,8 @@ func (r *rabbit) XORKeyStream(dst, src []byte) {
 	}
 }
 
-
 func g(u, v uint32) uint32 {
-	uv := uint64(u+v)
+	uv := uint64(u + v)
 	uv *= uv
 	return uint32(uv>>32) ^ uint32(uv)
 }
