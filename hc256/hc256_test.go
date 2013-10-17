@@ -19,9 +19,9 @@ func xordigest(msg []byte, n int) []byte {
 
 func TestKeyStream(t *testing.T) {
 	for i, tc := range tests {
-		c, err := hc256.New(tc.key, tc.iv)
+		c, err := hc256.NewCipher(tc.key, tc.iv)
 		if err != nil {
-			t.Fatalf("tests[%d]: New() err: %s\n", i, err)
+			t.Fatalf("tests[%d]: NewCipher() err: %s\n", i, err)
 		}
 
 		lastchunk := tc.chunks[len(tc.chunks)-1]

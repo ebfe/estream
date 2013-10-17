@@ -16,7 +16,7 @@ type hc128 struct {
 	ks []byte
 }
 
-func New(key, iv []byte) (cipher.Stream, error) {
+func NewCipher(key, iv []byte) (cipher.Stream, error) {
 	if len(key) != 16 {
 		return nil, errors.New("hc128: invalid key length")
 	}

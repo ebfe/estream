@@ -22,7 +22,7 @@ func benchStream(b *testing.B, c cipher.Stream) {
 }
 
 func BenchmarkHC128(b *testing.B) {
-	c, err := hc128.New(make([]byte, 16), make([]byte, 16))
+	c, err := hc128.NewCipher(make([]byte, 16), make([]byte, 16))
 	if err != nil {
 		b.Fatal(err)
 	}
@@ -30,7 +30,7 @@ func BenchmarkHC128(b *testing.B) {
 }
 
 func BenchmarkHC256(b *testing.B) {
-	c, err := hc256.New(make([]byte, 32), make([]byte, 32))
+	c, err := hc256.NewCipher(make([]byte, 32), make([]byte, 32))
 	if err != nil {
 		b.Fatal(err)
 	}
@@ -38,7 +38,7 @@ func BenchmarkHC256(b *testing.B) {
 }
 
 func BenchmarkRabbit(b *testing.B) {
-	c, err := rabbit.New(make([]byte, 16), make([]byte, 8))
+	c, err := rabbit.NewCipher(make([]byte, 16), make([]byte, 8))
 	if err != nil {
 		b.Fatal(err)
 	}

@@ -22,7 +22,7 @@ type rabbit struct {
 	ks    []byte
 }
 
-func New(key []byte, iv []byte) (cipher.Stream, error) {
+func NewCipher(key []byte, iv []byte) (cipher.Stream, error) {
 
 	if len(key) != 16 {
 		return nil, errors.New("rabbit: invalid key length")
