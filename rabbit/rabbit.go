@@ -131,8 +131,8 @@ func (r *rabbit) extract() {
 	// extract keystream
 	sw[0] = r.x[0] ^ (r.x[5] >> 16 | r.x[3] << 16)
 	sw[1] = r.x[2] ^ (r.x[7] >> 16 | r.x[5] << 16)
-	sw[2] = r.x[4] ^ (r.x[2] >> 16 | r.x[7] << 16)
-	sw[3] = r.x[6] ^ (r.x[3] >> 15 | r.x[1] << 16)
+	sw[2] = r.x[4] ^ (r.x[1] >> 16 | r.x[7] << 16)
+	sw[3] = r.x[6] ^ (r.x[3] >> 16 | r.x[1] << 16)
 
 	for i := range sw {
 		binary.LittleEndian.PutUint32(r.s[i*4:], sw[i])
