@@ -75,7 +75,7 @@ func (h *hc256) extract() {
 	h.ks = h.s[:]
 }
 
-func (h hc256) XORKeyStream(dst, src []byte) {
+func (h *hc256) XORKeyStream(dst, src []byte) {
 	for i := range src {
 		if len(h.ks) == 0 {
 			h.extract()
