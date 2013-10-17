@@ -5,6 +5,16 @@ import (
 	"testing"
 )
 
+func xordigest(msg []byte, n int) []byte {
+	d := make([]byte, n)
+
+	for i := range msg {
+		d[i%len(d)] ^= msg[i]
+	}
+
+	return d
+}
+
 func TestKeyStream(t *testing.T) {
 	for i, tc := range tests {
 		c, err := New(tc.key, tc.iv)
@@ -23,6 +33,11 @@ func TestKeyStream(t *testing.T) {
 			if !bytes.Equal(kschunk, chunk.val) {
 				t.Errorf("tests[%d] chunk[%d]: ks = %x want %x\n", i, j, kschunk, chunk.val)
 			}
+		}
+
+		digest := xordigest(ks, len(tc.xor))
+		if !bytes.Equal(digest, tc.xor) {
+				t.Errorf("tests[%d] xor-digest = %x want %x\n", i, digest, tc.xor)
 		}
 	}
 }
