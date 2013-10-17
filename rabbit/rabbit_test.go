@@ -1,8 +1,10 @@
-package rabbit
+package rabbit_test
 
 import (
 	"bytes"
 	"testing"
+
+	"github.com/ebfe/estream/rabbit"
 )
 
 func xordigest(msg []byte, n int) []byte {
@@ -17,7 +19,7 @@ func xordigest(msg []byte, n int) []byte {
 
 func TestKeyStream(t *testing.T) {
 	for i, tc := range tests {
-		c, err := New(tc.key, tc.iv)
+		c, err := rabbit.New(tc.key, tc.iv)
 		if err != nil {
 			t.Fatal("tests[%d]: New() err: %s\n", i, err)
 		}

@@ -1,9 +1,10 @@
-// Package hc256 implements the HC-256 stream cipher.
-package hc256
+package hc256_test
 
 import (
 	"bytes"
 	"testing"
+
+	"github.com/ebfe/estream/hc256"
 )
 
 func xordigest(msg []byte, n int) []byte {
@@ -18,7 +19,7 @@ func xordigest(msg []byte, n int) []byte {
 
 func TestKeyStream(t *testing.T) {
 	for i, tc := range tests {
-		c, err := New(tc.key, tc.iv)
+		c, err := hc256.New(tc.key, tc.iv)
 		if err != nil {
 			t.Fatalf("tests[%d]: New() err: %s\n", i, err)
 		}

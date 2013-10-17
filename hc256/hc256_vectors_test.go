@@ -1,4 +1,4 @@
-package hc256
+package hc256_test
 
 type estreamchunk struct {
 	offset int

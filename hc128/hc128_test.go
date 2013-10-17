@@ -1,9 +1,11 @@
 // Package hc128 implements the HC-128 stream cipher.
-package hc128
+package hc128_test
 
 import (
 	"bytes"
 	"testing"
+
+	"github.com/ebfe/estream/hc128"
 )
 
 func xordigest(msg []byte, n int) []byte {
@@ -18,7 +20,7 @@ func xordigest(msg []byte, n int) []byte {
 
 func TestKeyStream(t *testing.T) {
 	for i, tc := range tests {
-		c, err := New(tc.key, tc.iv)
+		c, err := hc128.New(tc.key, tc.iv)
 		if err != nil {
 			t.Fatalf("tests[%d]: New() err: %s\n", i, err)
 		}

@@ -1,4 +1,4 @@
-package hc128
+package hc128_test
 
 type estreamchunk struct {
 	offset int

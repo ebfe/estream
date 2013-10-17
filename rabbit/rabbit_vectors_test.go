@@ -1,4 +1,4 @@
-package rabbit
+package rabbit_test
 
 type estreamchunk struct {
 	offset int
