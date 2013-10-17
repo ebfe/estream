@@ -1,11 +1,10 @@
-// Package rabbit implements the Rabbit stream cipher (4503)
+// Package rabbit implements the Rabbit stream cipher
 package rabbit
 
 import (
 	"crypto/cipher"
 	"encoding/binary"
 	"errors"
-	"fmt"
 )
 
 var (
@@ -51,7 +50,6 @@ func New(key []byte, iv []byte) (cipher.Stream, error) {
 		r.setupIV(v[:])
 	}
 
-	fmt.Printf("%08x\n", k)
 	return &r, nil
 }
 
