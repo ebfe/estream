@@ -21,7 +21,7 @@ func TestKeyStream(t *testing.T) {
 	for i, tc := range tests {
 		c, err := rabbit.NewCipher(tc.key, tc.iv)
 		if err != nil {
-			t.Fatal("tests[%d]: NewCipher() err: %s\n", i, err)
+			t.Fatalf("tests[%d]: NewCipher() err: %s\n", i, err)
 		}
 
 		lastchunk := tc.chunks[len(tc.chunks)-1]
